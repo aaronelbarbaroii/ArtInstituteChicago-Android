@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ArtInstituteChicago-Android</string>
+
+
+    <string name="detail_text_description">There is no description</string>
+    <string name="detail_button_see_painting">see painting</string>
+    <string name="photo_painting_artist">artist:</string>
+
 </resources>

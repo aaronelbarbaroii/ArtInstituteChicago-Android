@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.artinstitutechicago_android.R
 import com.example.artinstitutechicago_android.data.Picture
 import com.example.artinstitutechicago_android.databinding.ItemPictureBinding
 import com.squareup.picasso.Picasso
@@ -43,6 +44,11 @@ class PictureAdapter (
 
         fun render(picture: Picture) {
             binding.titleTextView.text = picture.title
+            val shortDescription: String? = picture.shortDescription
+            if(shortDescription == null)
+                binding.shorDescriptionTextView.setText(R.string.detail_text_description)
+            else
+                binding.shorDescriptionTextView.text = picture.shortDescription
 
 
             Picasso.get().load(picture.getImageUrl())

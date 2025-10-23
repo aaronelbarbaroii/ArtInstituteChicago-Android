@@ -1,8 +1,9 @@
 package com.example.artinstitutechicago_android.activities
 
-import android.content.Intent
 import android.os.Bundle
+import android.renderscript.ScriptIntrinsicResize
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,26 +11,23 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.artinstitutechicago_android.R
 import com.example.artinstitutechicago_android.data.Picture
 import com.example.artinstitutechicago_android.data.PictureService
-import com.example.artinstitutechicago_android.databinding.ActivityDetailBinding
+import com.example.artinstitutechicago_android.databinding.ActivityPhotoPaintingBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailActivity : AppCompatActivity() {
+class PhotoPaintingActivity : AppCompatActivity() {
 
-    companion object {
-        const val EXTRA_PICTURE_ID = "PICTURE_ID"
-    }
-    lateinit var binding: ActivityDetailBinding
+
+    lateinit var binding: ActivityPhotoPaintingBinding
     lateinit var picture: Picture
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityPhotoPaintingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -38,30 +36,19 @@ class DetailActivity : AppCompatActivity() {
             insets
         }
 
-        val id = intent.getIntExtra(EXTRA_PICTURE_ID, -1)
+        val id = intent.getIntExtra(DetailActivity.EXTRA_PICTURE_ID, -1)
 
         getPicture(id)
 
     }
 
     fun loadData(){
-        // Image
-        Picasso.get().load(picture.getImageUrl()).into(binding.thumbnailImageView)
+        // image
+        Picasso.get().load(picture.getImageUrl()).into(binding.paintingImageView)
 
-        // Description
-        val description: String? = picture.description
-        if(description == null) {
-            binding.descriptionTextView.setText(R.string.detail_text_description)
-        } else {
-            binding.descriptionTextView.text = picture.description
-        }
+        // texto
+        binding.artistTextView.text = picture.artisTitle
 
-        // button
-        binding.seePaintingButton.setOnClickListener {
-            val intent = Intent(this, PhotoPaintingActivity::class.java)
-            intent.putExtra(EXTRA_PICTURE_ID, picture.id)
-            startActivity(intent)
-        }
     }
 
     fun getPicture(id: Int) {
@@ -77,5 +64,4 @@ class DetailActivity : AppCompatActivity() {
             }
         }
     }
-
 }

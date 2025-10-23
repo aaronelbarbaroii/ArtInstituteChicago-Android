@@ -19,6 +19,23 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"/>
 
+        <Button
+            android:id="@+id/seePaintingButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/detail_button_see_painting"/>
+
+
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="15sp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            />
 
         
     </LinearLayout>

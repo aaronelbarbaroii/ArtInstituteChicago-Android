@@ -45,6 +45,7 @@ dependencies {
     val retrofit = "3.0.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
     //Picasso
     implementation("com.squareup.picasso:picasso:2.8")

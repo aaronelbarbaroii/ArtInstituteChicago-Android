@@ -21,4 +21,13 @@
         tools:text="Villa Pamphili outside Porta S. Pancrazio, from Views of Rome"
         />
 
+    <TextView
+        android:id="@+id/shorDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="16sp"
+        tools:text="Villa Pamphili outside Porta S. Pancrazio, from Views of Rome"
+        />
+
 </LinearLayout>
