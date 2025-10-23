@@ -4,10 +4,14 @@
     <!-- DetailActivity -->
     <string name="detail_text_description">No description</string>
     <string name="detail_button_see_painting">see painting</string>
-    <string name="menu_favorite">favorite:</string>
+    <string name="menu_favorite">favorite</string>
 
     <!-- photoPaintingActivity -->
     <string name="photo_painting_artist">artist:</string>
-
+    <string name="photo_painting_menu_share">share</string>
+    <string name="photo_painting_dialog_title">Share </string>
+    <string name="photo_painting_dialog_message">Are you sure you want to share the link to: </string>
+    <string name="photo_painting_dialog_positive_button">Ok </string>
+    <string name="photo_painting_dialog_negative_button">Cancel </string>
 
 </resources>

@@ -1,10 +1,14 @@
 package com.example.artinstitutechicago_android.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.renderscript.ScriptIntrinsicResize
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,11 +21,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class PhotoPaintingActivity : AppCompatActivity() {
 
 
     lateinit var binding: ActivityPhotoPaintingBinding
     lateinit var picture: Picture
+    lateinit var sharedItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +48,50 @@ class PhotoPaintingActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        menuInflater.inflate(R.menu.activity_photo_painiting_menu, menu)
+
+        sharedItem = menu.findItem(R.id.action_share)
+
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_share -> {
+                val url = picture.getImageUrl()
+
+                val dialog = AlertDialog.Builder(this)
+                    .setTitle(R.string.photo_painting_dialog_title)
+                    .setMessage(getString(R.string.photo_painting_dialog_message) + "${picture.title}?")
+                    .setPositiveButton(R.string.photo_painting_dialog_positive_button) { dialog, which ->
+                        setSare(url)
+                    }
+                    .setNegativeButton(R.string.photo_painting_dialog_negative_button, null)
+                    .create()
+
+                dialog.show()
+                return true
+            }
+
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+
     fun loadData(){
+        supportActionBar?.title = picture.title
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+
         // image
         Picasso.get().load(picture.getImageUrl()).into(binding.paintingImageView)
 
@@ -50,6 +99,18 @@ class PhotoPaintingActivity : AppCompatActivity() {
 //        binding.artistTextView.text = picture.artisTitle
 
     }
+
+    fun setSare(url: String): Boolean {
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, url)
+            type = "image/jpg"
+        }
+        startActivity(Intent.createChooser(shareIntent, null))
+        return true
+    }
+
+
 
     fun getPicture(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
