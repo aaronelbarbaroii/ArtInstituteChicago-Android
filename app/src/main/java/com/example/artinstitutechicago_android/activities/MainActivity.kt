@@ -52,6 +52,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        adapter.notifyDataSetChanged()
+    }
+
     fun pictureList() {
         CoroutineScope(Dispatchers.IO).launch {
             try {

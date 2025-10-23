@@ -2,11 +2,13 @@ package com.example.artinstitutechicago_android.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.artinstitutechicago_android.R
 import com.example.artinstitutechicago_android.data.Picture
 import com.example.artinstitutechicago_android.databinding.ItemPictureBinding
+import com.example.artinstitutechicago_android.utils.SessionManager
 import com.squareup.picasso.Picasso
 
 class PictureAdapter (
@@ -49,6 +51,17 @@ class PictureAdapter (
                 binding.shorDescriptionTextView.setText(R.string.detail_text_description)
             else
                 binding.shorDescriptionTextView.text = picture.shortDescription
+
+
+            val session = SessionManager(itemView.context)
+            if(session.isFavorite(picture.id.toString())){
+                binding.favoriteImageView.visibility = View.VISIBLE
+//            favoriteImageView.isVisible = true
+            }
+            else {
+                binding.favoriteImageView.visibility = View.GONE
+//            favoriteImageView.isVisible = false
+            }
 
 
             Picasso.get().load(picture.getImageUrl())

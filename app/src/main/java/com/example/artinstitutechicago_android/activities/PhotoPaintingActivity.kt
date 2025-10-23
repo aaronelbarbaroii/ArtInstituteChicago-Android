@@ -47,7 +47,7 @@ class PhotoPaintingActivity : AppCompatActivity() {
         Picasso.get().load(picture.getImageUrl()).into(binding.paintingImageView)
 
         // texto
-        binding.artistTextView.text = picture.artisTitle
+//        binding.artistTextView.text = picture.artisTitle
 
     }
 
