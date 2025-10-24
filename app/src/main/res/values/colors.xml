@@ -5,4 +5,7 @@
 
     <color name="background">#B3ECFF</color>
 
+    <color name="transparent">#00000000</color>
+    <color name="draft">#FFFFFFFF</color>
+
 </resources>
