@@ -5,10 +5,10 @@ import android.content.Context
 class SessionManager(context: Context) {
     val sharedPreferences = context.getSharedPreferences("picture.session", Context.MODE_PRIVATE)
 
-    fun setFavorite(claveId: String, pictureId: String) {
+    fun setFavorite(claveId: String, valueId: String) {
         val editor = sharedPreferences.edit()
 //        editor.putString("FAVORITE_HOROSCOPE_ID", pictureId)
-        editor.putString("$claveId", pictureId)
+        editor.putString("$claveId", valueId)
         editor.apply()
     }
 
@@ -16,7 +16,7 @@ class SessionManager(context: Context) {
         return sharedPreferences.getString("$claveId", "")!!
     }
 
-    fun isFavorite(pictureId: String): Boolean {
-        return pictureId == getFavorite(pictureId)
+    fun isFavorite(calveId: String): Boolean {
+        return calveId == getFavorite(calveId)
     }
 }
