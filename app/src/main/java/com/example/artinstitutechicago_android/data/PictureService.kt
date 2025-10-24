@@ -6,13 +6,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface PictureService {
     @GET("artworks")
     suspend fun getAllPictures(): PictureListResponse
 
-    @GET("artworks?page=1&limit=100")
+    @GET("artworks?page=0&limit=100")
     suspend fun getPageAllPictures() : PictureListResponse
 
     @GET("artworks/{id}")

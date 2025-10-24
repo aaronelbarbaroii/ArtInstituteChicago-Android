@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">ArtInstituteChicago-Android</string>
 
+    <!-- MainActivity -->
+    <string name="main_menu_search">Find</string>
+
     <!-- DetailActivity -->
     <string name="detail_text_description">No description</string>
+    <string name="detail_text_publication">No publication history</string>
+    <string name="detail_text_exhibition">No exibition history</string>
     <string name="detail_button_see_painting">see painting</string>
     <string name="menu_favorite">favorite</string>
+    <string name="detail_label_description">Description</string>
+    <string name="detail_label_publication_history">Publication</string>
+    <string name="detail_label_exhibition_history">Exhibition</string>
+
 
     <!-- photoPaintingActivity -->
     <string name="photo_painting_artist">artist:</string>
@@ -13,5 +22,6 @@
     <string name="photo_painting_dialog_message">Are you sure you want to share the link to: </string>
     <string name="photo_painting_dialog_positive_button">Ok </string>
     <string name="photo_painting_dialog_negative_button">Cancel </string>
+    <string name="photo_painting_text_artist">Artist:</string>
 
 </resources>

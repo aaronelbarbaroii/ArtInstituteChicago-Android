@@ -2,8 +2,10 @@ package com.example.artinstitutechicago_android.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,6 +52,26 @@ class MainActivity : AppCompatActivity() {
 
         pictureList()
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.activity_main_menu, menu)
+
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filteredPictureList = originalPictureList.filter { it.title.contains(newText, true) }
+                adapter.updateItems(filteredPictureList)
+                return true
+            }
+        })
+
+        return true
     }
 
     override fun onResume() {

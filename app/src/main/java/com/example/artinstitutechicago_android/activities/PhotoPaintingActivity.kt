@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.artinstitutechicago_android.R
@@ -58,59 +59,46 @@ class PhotoPaintingActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_share -> {
-                val url = picture.getImageUrl()
-
-                val dialog = AlertDialog.Builder(this)
-                    .setTitle(R.string.photo_painting_dialog_title)
-                    .setMessage(getString(R.string.photo_painting_dialog_message) + "${picture.title}?")
-                    .setPositiveButton(R.string.photo_painting_dialog_positive_button) { dialog, which ->
-                        setSare(url)
-                    }
-                    .setNegativeButton(R.string.photo_painting_dialog_negative_button, null)
-                    .create()
-
-                dialog.show()
-                return true
-            }
-
-            android.R.id.home -> {
-                finish()
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-
-
     fun loadData(){
-        supportActionBar?.title = picture.title
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
+        supportActionBar?.hide()
 
         // image
         Picasso.get().load(picture.getImageUrl()).into(binding.paintingImageView)
+        binding.paintingImageView.setOnClickListener {
+            android.R.id.home
+            finish()
+        }
 
         // texto
-//        binding.artistTextView.text = picture.artisTitle
+        binding.titleTextView.text = picture.title
+        binding.artistTextView.text = picture.artisTitle
 
+        // Button
+        binding.platformButton.setOnClickListener {
+            val url = picture.getImageUrl()
+
+            val dialog = AlertDialog.Builder(this)
+                .setTitle(R.string.photo_painting_dialog_title)
+                .setMessage(getString(R.string.photo_painting_dialog_message) + "${picture.title}?")
+                .setPositiveButton(R.string.photo_painting_dialog_positive_button) { dialog, which ->
+                    setSare(url)
+                }
+                .setNegativeButton(R.string.photo_painting_dialog_negative_button, null)
+                .create()
+
+            dialog.show()
+        }
     }
 
     fun setSare(url: String): Boolean {
         val shareIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, url)
+            putExtra(Intent.EXTRA_STREAM, url.toUri())
             type = "image/jpg"
         }
         startActivity(Intent.createChooser(shareIntent, null))
         return true
     }
-
-
 
     fun getPicture(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {

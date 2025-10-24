@@ -53,6 +53,7 @@ class PictureAdapter (
                 binding.shorDescriptionTextView.text = picture.shortDescription
 
 
+
             val session = SessionManager(itemView.context)
             if(session.isFavorite(picture.id.toString())){
                 binding.favoriteImageView.visibility = View.VISIBLE

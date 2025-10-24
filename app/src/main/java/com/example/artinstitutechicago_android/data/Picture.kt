@@ -17,6 +17,8 @@ class Picture (
     @SerializedName("short_description") val shortDescription: String?,
     @SerializedName("description") val description: String?,
     @SerializedName("artist_title") val artisTitle: String,
+    @SerializedName("publication_history") val publication: String?,
+    @SerializedName("exhibition_history") val exhibition: String?,
 
 ) {
     fun getImageUrl(): String {

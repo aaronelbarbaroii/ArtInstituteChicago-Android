@@ -97,6 +97,12 @@ class DetailActivity : AppCompatActivity() {
 
         // Image
         Picasso.get().load(picture.getImageUrl()).into(binding.thumbnailImageView)
+        binding.thumbnailImageView.setOnClickListener {
+            val intent = Intent(this, PhotoPaintingActivity::class.java)
+            intent.putExtra(EXTRA_PICTURE_ID, picture.id)
+            startActivity(intent)
+        }
+
 
         // Description
         val description: String? = picture.description
@@ -106,11 +112,22 @@ class DetailActivity : AppCompatActivity() {
             binding.descriptionTextView.text = picture.description
         }
 
-        // button
-        binding.seePaintingButton.setOnClickListener {
-            val intent = Intent(this, PhotoPaintingActivity::class.java)
-            intent.putExtra(EXTRA_PICTURE_ID, picture.id)
-            startActivity(intent)
+        binding.publicationHistoryTextView.text = picture.publication
+
+        val publication = picture.publication
+        if(publication == null) {
+            binding.publicationHistoryTextView.setText(R.string.detail_label_publication_history)
+        } else {
+            binding.descriptionTextView.text = picture.publication
+        }
+
+        binding.exhibitionHistoryTextView.text = picture.exhibition
+
+        val exhibition = picture.exhibition
+        if(exhibition == null) {
+            binding.exhibitionHistoryTextView.setText(R.string.detail_label_exhibition_history)
+        } else {
+            binding.exhibitionHistoryTextView.text = picture.exhibition
         }
     }
 
