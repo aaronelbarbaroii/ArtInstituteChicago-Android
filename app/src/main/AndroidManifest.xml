@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtInstituteChicagoAndroid">
         <activity
+            android:name=".activities.MoreResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.PhotoPaintingActivity"
             android:exported="false" />
         <activity

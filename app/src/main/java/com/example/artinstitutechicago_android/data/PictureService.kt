@@ -13,8 +13,8 @@ interface PictureService {
     @GET("artworks")
     suspend fun getAllPictures(): PictureListResponse
 
-    @GET("artworks?page=2&limit=50")
-    suspend fun getPageAllPictures() : PictureListResponse
+    @GET("artworks")
+    suspend fun getPageAllPictures(@Query("page") pages: Int, @Query ("limit") limit: Int) : PictureListResponse
 
     @GET("artworks/{id}")
     suspend fun getPictureId(@Path("id") id: Int): PictureResponse

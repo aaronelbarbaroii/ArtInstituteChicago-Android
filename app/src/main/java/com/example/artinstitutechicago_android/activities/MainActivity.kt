@@ -2,7 +2,10 @@ package com.example.artinstitutechicago_android.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.se.omapi.Session
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -15,6 +18,7 @@ import com.example.artinstitutechicago_android.adapters.PictureAdapter
 import com.example.artinstitutechicago_android.data.Picture
 import com.example.artinstitutechicago_android.data.PictureService
 import com.example.artinstitutechicago_android.databinding.ActivityMainBinding
+import com.example.artinstitutechicago_android.utils.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +28,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: PictureAdapter
 
+    lateinit var session: SessionManager
+
     var originalPictureList: List<Picture> = emptyList()
     var filteredPictureList: List<Picture> = emptyList()
+
+    var page = "1"
+    var limit = "12"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra(DetailActivity.EXTRA_PICTURE_ID, picture.id)
             startActivity(intent)
         }
+
+        session = SessionManager(this)
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -74,8 +85,22 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_more ->{
+                val intent = Intent(this, MoreResultActivity::class.java)
+                startActivity(intent)
+               return true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
+
+        pictureList()
 
         adapter.notifyDataSetChanged()
     }
@@ -84,8 +109,11 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val service = PictureService.getInstace()
-                originalPictureList = service.getAllPictures().result
+                val page = session.getPage()
+                val limit = session.getLimit()
+                originalPictureList = service.getPageAllPictures(page, limit).result
                 filteredPictureList = originalPictureList
+
                 CoroutineScope(Dispatchers.Main).launch {
                     adapter.updateItems(filteredPictureList)
                 }

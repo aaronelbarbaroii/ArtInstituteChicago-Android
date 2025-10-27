@@ -4,6 +4,14 @@
     <!-- MainActivity -->
     <string name="main_menu_search">Find</string>
 
+    <!-- MoreResultAcritivty -->
+    <string name="more_result_title">More Result</string>
+
+    <!-- MoreRessults -->
+    <string name="more_result_number_pages">Number page</string>
+    <string name="more_result_text_button">Save</string>
+    <string name="more_result_number_results">Number results</string>
+
     <!-- DetailActivity -->
     <string name="detail_text_description">No description</string>
     <string name="detail_text_publication">No publication history</string>

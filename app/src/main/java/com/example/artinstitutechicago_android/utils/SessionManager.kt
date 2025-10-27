@@ -19,4 +19,24 @@ class SessionManager(context: Context) {
     fun isFavorite(calveId: String): Boolean {
         return calveId == getFavorite(calveId)
     }
+
+    fun setPage(page: Int) {
+        val editor = sharedPreferences.edit()
+        editor.putInt("PAGE", page)
+        editor.apply()
+    }
+
+    fun getPage(): Int {
+        return sharedPreferences.getInt("PAGE", 1)
+    }
+
+    fun setLimit(limit: Int) {
+        val editor = sharedPreferences.edit()
+        editor.putInt("LIMIT", limit)
+        editor.apply()
+    }
+
+    fun getLimit(): Int {
+        return sharedPreferences.getInt("LIMIT", 10)
+    }
 }
