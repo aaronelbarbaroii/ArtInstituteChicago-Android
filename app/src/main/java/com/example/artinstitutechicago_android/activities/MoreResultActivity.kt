@@ -39,6 +39,7 @@ class MoreResultActivity : AppCompatActivity() {
 
         binding.numberTextView.text = page.toString()
         binding.resultTextView.text = limit.toString()
+        binding.resultSlider.value = limit.toFloat()
 
         binding.pageMinusButton.setOnClickListener {
             if(page > 1) {
