@@ -18,4 +18,6 @@
 - Debe realizar llamadas a un API Rest para obtener datos utilizando Retrofit
   + Creo una clase PictureService donde añado las urls para mostrar todos los datos de la API, los resultados con la página que queremos ver y el límite de resultados que queremos que se muestren. Una url para mostrar los cuadros por id.
   + Una clase Picture donde formateo los valores de la API que queremos mostrar.
-- 
+- Debe utilizar un RecyclerView para mostrar una lista de elementos
+  + Creo un recycler view en el layout del main activity con un layout item para cada elemento que va a mostrar el recyclerView y luego creo una clase adapter para vincular el conjunto de datos con los elementos del RecyclerView para mostrar la lista de lementos. Para tomar los datos y crear las vistas necesarias para cada elemento.
+  + 
