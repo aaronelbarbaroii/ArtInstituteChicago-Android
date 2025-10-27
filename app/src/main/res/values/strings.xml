@@ -16,7 +16,7 @@
 
 
     <!-- photoPaintingActivity -->
-    <string name="photo_painting_artist">artist:</string>
+    <string name="photo_painting_artist">Artist</string>
     <string name="photo_painting_menu_share">share</string>
     <string name="photo_painting_dialog_title">Share </string>
     <string name="photo_painting_dialog_message">Are you sure you want to share the link to: </string>

@@ -92,6 +92,7 @@ class DetailActivity : AppCompatActivity() {
     fun loadData(){
 
         supportActionBar?.title = picture.title
+        supportActionBar?.subtitle = picture.artisTitle
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
@@ -116,7 +117,7 @@ class DetailActivity : AppCompatActivity() {
 
         val publication = picture.publication
         if(publication == null) {
-            binding.publicationHistoryTextView.setText(R.string.detail_label_publication_history)
+            binding.publicationHistoryTextView.setText(R.string.detail_text_publication)
         } else {
             binding.descriptionTextView.text = picture.publication
         }
@@ -125,7 +126,7 @@ class DetailActivity : AppCompatActivity() {
 
         val exhibition = picture.exhibition
         if(exhibition == null) {
-            binding.exhibitionHistoryTextView.setText(R.string.detail_label_exhibition_history)
+            binding.exhibitionHistoryTextView.setText(R.string.detail_text_exhibition)
         } else {
             binding.exhibitionHistoryTextView.text = picture.exhibition
         }

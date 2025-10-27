@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val service = PictureService.getInstace()
-                originalPictureList = service.getPageAllPictures().result
+                originalPictureList = service.getAllPictures().result
                 filteredPictureList = originalPictureList
                 CoroutineScope(Dispatchers.Main).launch {
                     adapter.updateItems(filteredPictureList)
