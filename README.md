@@ -30,18 +30,18 @@
 - Debe utilizar un RecyclerView para mostrar una lista de elementos
   + Creo un recyclerView en el layout del main activity con un layout item para cada elemento que va a mostrar el recyclerView y luego creo una clase adapter para vincular el conjunto de datos con los elementos del RecyclerView para mostrar la lista de lementos. Para tomar los datos y crear las vistas necesarias para cada elemento.
     
-  - Mostrar un menú en la AppBar
-    + En la página principal muestro el menú de la AppBar con el nombre de la App y un icono para buscar por texto y un icono para cambiar el número de página y mostrar un mayor número de elementos en la lista de resultados
-    + En la página detalle muestro el menú de la AppBara con el nombre de la obra y el del autor como subtítulo y un icono en forma de corazón para añadir a favotiros dentro de la sessión
-    + Para que se muestren los menús elimino del theme el noMenuActionBar y luego creo una carpeta menú con los layouts de menú y dento los items con las opciones que va tener el menú
-    + En el código del Activity del menú añadimos la funcionalidad con una función onCreateOptionsMenu y onOptionsItemSelected para crear el menú y lo que va ha hacer cada opción del menú.
+- Mostrar un menú en la AppBar
+  + En la página principal muestro el menú de la AppBar con el nombre de la App y un icono para buscar por texto y un icono para cambiar el número de página y mostrar un mayor número de elementos en la lista de resultados
+  + En la página detalle muestro el menú de la AppBara con el nombre de la obra y el del autor como subtítulo y un icono en forma de corazón para añadir a favotiros dentro de la sessión
+  + Para que se muestren los menús elimino del theme el noMenuActionBar y luego creo una carpeta menú con los layouts de menú y dento los items con las opciones que va tener el menú
+  + En el código del Activity del menú añadimos la funcionalidad con una función onCreateOptionsMenu y onOptionsItemSelected para crear el menú y lo que va ha hacer cada opción del menú.
       
-  - Internacionalización (un idioma es suficiente)
-    + He creado un string con todos los textos que aparecen en la app
+- Internacionalización (un idioma es suficiente)
+  + He creado un string con todos los textos que aparecen en la app
       
-  - Usar ViewBinding
-    + En toda la app he añadido un binding para inflar cada layout con su Activity y asi tener todos los elementos en un mismo binding
-    + implementamos el binding en el gradle de la app y luego lo declaramos en las distintas activities y lo inflamos para vincular los objetos del layout en la Acitivity donde se van a usar.
+- Usar ViewBinding
+  + En toda la app he añadido un binding para inflar cada layout con su Activity y asi tener todos los elementos en un mismo binding
+  + implementamos el binding en el gradle de la app y luego lo declaramos en las distintas activities y lo inflamos para vincular los objetos del layout en la Acitivity donde se van a usar.
       
-  - Investigar y usar TextField
-    + En la aplicación no hay ningún motivo para udar textFiled.
+- Investigar y usar TextField
+  + En la aplicación no hay ningún motivo para udar textFiled.
