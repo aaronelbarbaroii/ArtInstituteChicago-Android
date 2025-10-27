@@ -20,4 +20,12 @@
   + Una clase Picture donde formateo los valores de la API que queremos mostrar.
 - Debe utilizar un RecyclerView para mostrar una lista de elementos
   + Creo un recycler view en el layout del main activity con un layout item para cada elemento que va a mostrar el recyclerView y luego creo una clase adapter para vincular el conjunto de datos con los elementos del RecyclerView para mostrar la lista de lementos. Para tomar los datos y crear las vistas necesarias para cada elemento.
-  + 
+  - Mostrar un menú en la AppBar
+    + En la página principal muestro el menú de la AppBar con el nombre de la App y un icono para buscar por texto y un icono para cambiar el número de página y mostrar un mayor número de elementos en la lista de resultados
+    + En la página detalle muestro el menú de la AppBara con el nombre de la obra y el del autor como subtítulo y un icono en forma de corazón para añadir a favotiros dentro de la sessión
+  - Internacionalización (un idioma es suficiente)
+    + He creado un string con todos los textos que aparecen en la app
+  - Usar ViewBinding
+    + En toda la app he añadido un binding para inflar cada layout con su Activity y asi tener todos los elementos en un mismo binding
+  - Investigar y usar TextField
+    + En la aplicación no hay ningún motivo para udar textFiled.
